@@ -1,95 +1,82 @@
-# Project IfNoAI - Design Document
+# IfNoAI - Technical Blueprint
 
-## 1. 项目愿景 (Vision)
+> **"Deconstruct the cloud. Reclaim the mind."**
 
-**项目名称**: IfNoAI
-**Concept**: "Simulating the silence of the cloud." (模拟云端的静默)
-
-**核心目标**: 
-创建一个 Windows 应用程序，用于模拟“AI 消失”的假设场景。通过在有限时间内切断设备与云端 AI 的所有连接，让用户直观地体验到 AI 对当前操作系统的渗透程度，以及在没有 AI 辅助下的真实工作状态。这是一个关于“依赖性”的社会实验工具。
+This document details the system architecture and operational mechanism of **IfNoAI**. It is not just software, but a precision experimental apparatus designed to simulate a scenario of "AI Silence."
 
 ---
 
-## 2. 核心功能 (Core Features)
+## 1. Core Philosophy
 
-### 2.1 智能阻断 (The Blackout)
-- **全局静默**: 基于系统底层网络配置，尽可能阻断设备上所有指向 AI 服务的网络流量。
-- **深度覆盖**: 不仅针对浏览器，更着重于 IDE (VS Code, JetBrains)、Office 套件、系统内置功能 (Windows Copilot) 等“隐形”AI。
-- **动态黑名单**: 维护一个 `ai-domains.json`，持续更新最新的 AI 服务端点。
+**Project IfNoAI** aims to create an isolated environment that uses technical means to temporarily sever the device's connection to cloud artificial intelligence services. This is not a denial of AI, but a reverse test of "dependency."
 
-### 2.2 实验控制 (Experiment Control)
-- **时间胶囊 (Timer)**: 用户设定实验时长（如 1小时 - 24小时）。
-- **不可逆性 (Hard Mode)**: 在实验期间，提供一种“无法轻易退出”的体验，模拟 AI 彻底离线的绝望感（当然会保留紧急恢复手段）。
-
-### 2.3 依赖度反馈 (Dependency Feedback)
-- **日志记录**: (未来规划) 尝试记录被拦截的请求数量，并在实验结束后生成一份报告：“在过去的 24 小时内，你的设备尝试呼叫 AI 1,024 次。”
-- **可视化**: 直观展示拦截频率。
-
-### 2.4 安全协议 (Safety Protocol)
-- **自动回滚**: 实验时间结束后，自动恢复网络设置。
-- **紧急逃生**: 生成物理文件 `Emergency_Restore.bat`，用于在软件失效时手动恢复系统状态。
+During the experiment, the system simulates a parallel world where "AI has suddenly disappeared," allowing users to intuitively experience the extent to which modern workflows rely on intelligent assistance, and observe their cognitive state when returning to a mode of "pure human wisdom."
 
 ---
 
-## 3. 技术架构 (Technical Architecture)
+## 2. System Modules
 
-### 3.1 技术栈
-- **语言**: Python 3.10+
-- **GUI 框架**: PySide6 (Qt) - 追求一种冷峻的、仪表盘式的科幻 UI。
-- **打包**: Nuitka / PyInstaller
+### 2.1 The Interceptor
+The core engine of the system. It does not rely on high-level firewall rules but acts directly on the network resolution layer of the operating system.
+- **Global Coverage**: Precision strikes against hundreds of known AI service endpoints (including OpenAI, Anthropic, Google, Microsoft, GitHub Copilot, etc.).
+- **Dual-Stack Blocking**: Handles both IPv4 and IPv6 traffic simultaneously to prevent intelligence leaks in modern network environments.
+- **Dynamic Updates**: Maintains a continuously evolving "silence list" via `ai_domains.json`.
 
-### 3.2 实现原理 (The Mechanism)
-采用 **Hosts 文件劫持 + DNS 缓存刷新** 作为最基础且有效的拦截手段。
+### 2.2 The Sinkhole
+When the Interceptor is active, requests sent to AI do not simply time out; they are redirected to the local **Sinkhole Server**.
+- **Capture**: Listens on local ports `80` (HTTP) and `443` (HTTPS).
+- **Devour**: For captured requests, the server logs the source domain and then returns a meaningless response or directly disconnects, simulating a "Network Error."
+- **Statistics**: Every captured request represents a subconscious user call to AI; this data will generate a "Dependency Report" at the end of the experiment.
 
-#### 流程图
-1.  **Initiate**: 用户设定时长 -> 点击 "Initiate Blackout"。
-2.  **Backup**: 备份 `hosts` 文件。
-3.  **Inject**: 写入 AI 域名黑名单，指向 `0.0.0.0`。
-4.  **Flush**: 执行 `ipconfig /flushdns`。
-5.  **Monitor**: 倒计时运行，(可选) 监听网络请求失败日志。
-6.  **Restore**: 倒计时结束或触发紧急停止 -> 恢复 `hosts` -> 刷新 DNS。
-
-### 3.3 目标域名列表 (Target Domains Draft)
-*该列表将作为核心资产持续维护*
-
-**Core LLMs:**
-- `api.openai.com`, `chatgpt.com`
-- `anthropic.com`, `claude.ai`
-- `gemini.google.com`
-
-**Dev Tools (The Hidden AI):**
-- `copilot-proxy.githubusercontent.com` (GitHub Copilot)
-- `cursor.sh`, `repo.cursor.sh`
-- `codeium.com`
-
-**System Integrated:**
-- `copilot.microsoft.com`
-- `edgeservices.bing.com` (Bing Chat)
+### 2.3 The Time Lock
+The boundary of the experiment.
+- **Forced Silence**: Users set the experiment duration (1-24 hours). Before the countdown ends, the system encourages users to persist in working within the AI-free environment.
+- **Psychological Game**: This is a process of confronting one's own habits.
 
 ---
 
-## 4. 风险与对策 (Risks & Mitigation)
+## 3. The Mechanism
 
-| 风险 | 对策 |
-| :--- | :--- |
-| **意外断网** | 提供 `Emergency_Restore.bat` 脚本；设置开机自启的检查服务，若超时未恢复则强制恢复。 |
-| **误伤非 AI 服务** | 域名列表需精细化维护，接受社区反馈。 |
-| **软件冲突** | 检测杀毒软件是否拦截 Hosts 修改，给出提示。 |
+The system employs **Hosts Hijacking** and **Local Loopback** technologies to achieve efficient and low-overhead blocking.
+
+### 3.1 Initiation Sequence
+1.  **Snapshot**: The system first creates a complete backup of the current `C:\Windows\System32\drivers\etc\hosts` file, generating `hosts.backup.ifnoai`.
+2.  **Injection**: Reads `ai_domains.json` and points all AI-related domain resolution records to the local loopback address:
+    - IPv4: `127.0.0.1`
+    - IPv6: `::1`
+3.  **Flush**: Calls `ipconfig /flushdns` to clear the operating system's DNS cache, ensuring the block takes effect immediately.
+4.  **Activation**: Starts the Sinkhole Server to begin listening for redirected traffic.
+
+### 3.2 Restoration Sequence
+1.  **Deactivation**: Stops the Sinkhole Server.
+2.  **Revert**: Restores the original `hosts` content from the backup file, or precisely removes the entries injected by IfNoAI.
+3.  **Flush**: Flushes the DNS cache again to restore normal network connectivity.
 
 ---
 
-## 5. UI 设计概念 (UI Concept)
+## 4. Safety Protocols
 
-**风格**: **Sci-Fi / Terminal / Industrial**
-- 深色背景，霓虹蓝/红配色。
-- 字体采用等宽字体 (Monospace)。
-- 界面元素模仿飞船控制台或服务器仪表盘。
-- 状态显示: "LINK STATUS: CONNECTED" (正常) -> "LINK STATUS: SEVERED" (阻断后)。
+To prevent users from getting "lost" during the experiment, the system has built-in multiple fail-safe mechanisms.
+
+### 4.1 Auto-Rollback
+Whether the experiment ends normally or terminates abnormally (e.g., program crash), the system is designed with atomic recovery logic. On the next startup, the program will detect and clean up residual blocking rules.
+
+### 4.2 Emergency Eject
+The system generates an independent `Emergency_Restore.bat` script. Even if the main program fails to run, users can run this script with administrator privileges to forcibly reset network settings.
+
+### 4.3 Permission Control
+Since it involves modifying core system files, the program must be run with **Administrator** privileges. All modifications are restricted to a specific marked area within the `hosts` file (`# === IfNoAI START ===`) and never touch the user's other configurations.
 
 ---
 
-## 6. 开发路线图 (Roadmap)
+## 5. Visual Language
 
-- [ ] **Phase 1 (The Switch)**: 核心 Python 脚本，实现 Hosts 的备份、修改、恢复。
-- [ ] **Phase 2 (The Console)**: 构建 GUI 界面，实现倒计时和状态显示。
-- [ ] **Phase 3 (The Report)**: (进阶) 尝试统计拦截次数，生成依赖度报告。
+The interface design of IfNoAI is deeply influenced by **Cyberpunk** and **Retro Terminal** aesthetics.
+
+- **Tone**: Deep space black background paired with neon green/warning red, creating an immersive sense of "entering the system underlayer."
+- **Typography**: Uses monospaced fonts to simulate code editors and command-line interfaces.
+- **Metaphor**: All status prompts and loading animations aim to mimic spaceship consoles or hacker tools, reinforcing the ritual sense of "severing the connection."
+
+---
+
+> **"The silence is not empty. It is full of answers."**

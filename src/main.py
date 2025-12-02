@@ -27,11 +27,32 @@ def run_as_admin():
 
 def main():
     parser = argparse.ArgumentParser(description="IfNoAI - The AI Blackout Experiment")
-    parser.add_argument("action", choices=["on", "off", "status"], help="Action to perform")
+    parser.add_argument("action", choices=["on", "off", "status", "gui"], nargs="?", default="gui", help="Action to perform (default: gui)")
     parser.add_argument("--force", action="store_true", help="Force action without confirmation")
     
     args = parser.parse_args()
     
+    # If GUI requested (default)
+    if args.action == "gui":
+        # Check admin rights immediately for GUI
+        if not ctypes.windll.shell32.IsUserAnAdmin():
+            if not run_as_admin():
+                return # Exit if elevation failed or new process started
+            return # Exit the non-admin process
+
+        try:
+            from PySide6.QtWidgets import QApplication
+            from gui.main_window import MainWindow
+            
+            app = QApplication(sys.argv)
+            window = MainWindow()
+            window.show()
+            sys.exit(app.exec())
+        except ImportError:
+            print("Error: PySide6 not found. Please install requirements: pip install -r requirements.txt")
+            sys.exit(1)
+        return
+
     blocker = AIBlocker()
 
     if args.action == "status":

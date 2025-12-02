@@ -1,48 +1,94 @@
 # IfNoAI
 
-> **A Sci-Fi Experiment on your Desktop.**  
-> 一个桌面端的科幻实验：假如未来某一天，AI 突然消失了。
+> **A Sci-Fi Experiment on your Desktop.**
+>
+> **"In the silence of the cloud, we hear the echo of our own minds."**
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Platform](https://img.shields.io/badge/platform-Windows-blue)
 
-## 🌌 概念 (Concept)
+## 🌌 The Collapse & The Reconstruction
 
-**IfNoAI** 是一个基于 Windows 的实验性项目。它构建了一个模拟场景：在一个被 AI 高度渗透的数字世界中，如果所有的云端智能突然静默，我们的设备会变成什么样？
+What if... just what if... one day, the wisdom of the cloud suddenly falls into dead silence?
 
-> **"When we lose the assistance of the cloud brain, can we still solve problems efficiently?"**  
-> **"当我们失去了云端大脑的辅助，我们还能高效地解决问题吗？"**
+Those digital neurons that have subtly embedded themselves into our cerebral cortex, reconstructing our patterns of thought—if they were to snap in an instant, would the cognitive edifice humanity has built for so long collapse with them?
 
-这不仅仅是一个屏蔽工具，更是一场**社会实验**与**AI 依赖度探针**。通过在系统底层切断对 OpenAI, Copilot, Gemini 等数百个 AI 服务的连接，我们可以直观地观测到：
+We have already sensed this shift. That sudden helplessness when severed from AI assistance; that stagnation and blankness of mind when facing an empty screen. We know this "silicon dependency" is etching away at our souls, yet we often choose to turn a blind eye, unable to confront it.
 
-*   有多少软件突然变得“智障”或功能失效？
-*   操作系统中嵌合了多少我们未曾察觉的 AI 触角？
-*   我们自己是否还能流畅地完成工作？
+**IfNoAI** is not merely software; it is a rehearsal for "loss," a stress test for self-belief.
 
-## �️ 功能 (Features)
+When you initiate it, your device will completely sever contact with all cloud AI.
+Facing your every inquiry, your every habitual reliance, the response will no longer be an emergence of wisdom, but a cold, repetitive, emotionless—
 
-- **The Blackout (大停电)**: 一键模拟 AI 服务离线。通过修改系统 Hosts 文件，将主流 AI 服务的网络请求重定向至虚空（0.0.0.0）。
-- **Reality Check (现实检验)**: 尽可能覆盖所有已知的 AI 服务端点，包括浏览器、IDE 插件、系统级 Copilot 以及各类第三方应用。
-- **Time Capsule (时间胶囊)**: 设定一段“无 AI”的持续时间，体验一种复古的、纯粹的计算环境。
-- **Safety Protocol (安全协议)**: 内置自动恢复机制与紧急逃生脚本，确保实验结束后能够安全返回“智能时代”。
+**"Network Error"**
 
-## 📄 设计文档 (Design)
+Perhaps in the distant future, humanity will truly lose itself amidst a screen full of "Network Errors," our beliefs crumbling. But before that day truly arrives, in this "moment of silence" you initiate yourself, try to face this silence directly.
 
-详细的技术实现和架构设计请参阅 [DESIGN_DOC.md](./DESIGN_DOC.md)。
+---
 
-## 🚀 快速开始 (Getting Started)
+## 🗝️ The Experience
 
-*目前项目处于设计阶段 (Design Phase)*
+- **The Severance**: Instantly cut the umbilical connection to hundreds of AI services like OpenAI, Copilot, Claude, Gemini, etc. A system-level Hosts hijack ensures not a single signal escapes this isolated island.
+- **The Void**: When you attempt to wake the AI, the Sinkhole Server captures these requests and devours them. You will only see connection failure prompts—withdrawal symptoms of the digital age.
+- **The Reflection**: Set a period of "AI-free" solitude (1-24 hours). After the experiment concludes, the system will tell you: during this time, how many times did you subconsciously reach out to the cloud.
 
-### 预想的使用方式:
+## 📄 Technical Blueprint
 
-1.  启动 **IfNoAI**。
-2.  设定实验时长（例如：24小时）。
-3.  点击 **"Initiate Blackout"**。
-4.  观察你的电脑，记录下哪些功能失效了，哪些图标变灰了。
+For details on how this wall of sighs is constructed, please refer to the [DESIGN_DOC.md](./DESIGN_DOC.md).
 
-## ⚠️ 免责声明 (Disclaimer)
+## 🚀 Initiate Protocol
 
-本软件通过修改系统 `hosts` 文件工作，旨在进行技术实验与反思。请确保您了解其工作原理，并妥善保存重要数据。
+### 1. Prerequisites
+- **OS**: Windows 10 / 11
+- **Runtime**: Python 3.10+
+- **Privileges**: Administrator rights required (to touch the system's neural center—the Hosts file)
+
+### 2. Installation
+
+```bash
+# Clone repository
+git clone https://github.com/coolife-code/ifnoai.git
+cd ifnoai
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### 3. Execution
+
+Recommended to use the GUI to visually observe the connection status:
+
+```bash
+# Launch Console (GUI)
+python src/main.py
+```
+
+Or use Command Line Interface (CLI):
+
+```bash
+# Check current status
+python src/main.py status
+
+# Engage Interceptor (Sever Connection)
+python src/main.py on
+
+# Restore Connection (Rebuild Link)
+python src/main.py off
+```
+
+### 4. Troubleshooting
+- **Antivirus Interception**: Since the program needs to modify the `hosts` file, it may be mistaken for a malicious intrusion by antivirus software. Please grant it trust, or temporarily disable protection.
+- **Lost in the Void (Unable to Restore)**: If an accident occurs and the network fails to recover automatically, please manually delete the `IfNoAI` related section in the `hosts` file, and run `ipconfig /flushdns` to flush the DNS cache.
+
+## 🤝 Join the Resistance
+
+This list is far from complete. The tentacles of the cloud are extending every moment, and new AI services are emerging endlessly.
+
+If you find an AI service domain that has not been blocked, please submit a Pull Request to supplement `data/ai_domains.json`.
+Let us jointly perfect this line of defense and ensure the purity of the experiment.
+
+## ⚠️ Disclaimer
+
+This software is intended for technical experimentation and philosophical reflection. It works by modifying core system files. Please ensure you understand the consequences of this action, and properly preserve your data and beliefs.
 
 ---
 *Looking for the ghost in the machine.*

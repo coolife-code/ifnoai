@@ -443,6 +443,7 @@ def run_as_admin():
         return False
 
 if __name__ == "__main__":
+    # Logic moved to src/main.py, but keep this for direct testing
     if not run_as_admin():
         sys.exit(0)
         
