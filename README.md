@@ -1,10 +1,29 @@
+<div align="center">
+
+```text
+██╗███████╗███╗   ██╗ ██████╗  █████╗ ██╗
+██║██╔════╝████╗  ██║██╔═══██╗██╔══██╗██║
+██║█████╗  ██╔██╗ ██║██║   ██║███████║██║
+██║██╔══╝  ██║╚██╗██║██║   ██║██╔══██║██║
+██║██║     ██║ ╚████║╚██████╔╝██║  ██║██║
+╚═╝╚═╝     ╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚═╝
+                                         
+      [ THE SILENCE OF THE CLOUD ]
+```
+
 # IfNoAI
 
 > **A Sci-Fi Experiment on your Desktop.**
 >
 > **"In the silence of the cloud, we hear the echo of our own minds."**
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Platform](https://img.shields.io/badge/platform-Windows-blue)
+![License](https://img.shields.io/badge/license-MIT-00ff88?style=for-the-badge) 
+![Platform](https://img.shields.io/badge/platform-Windows-00d4ff?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-EXPERIMENTAL-ff0055?style=for-the-badge)
+
+</div>
+
+---
 
 ## 🌌 The Collapse & The Reconstruction
 
@@ -27,9 +46,22 @@ Perhaps in the distant future, humanity will truly lose itself amidst a screen f
 
 ## 🗝️ The Experience
 
-- **The Severance**: Instantly cut the umbilical connection to hundreds of AI services like OpenAI, Copilot, Claude, Gemini, etc. A system-level Hosts hijack ensures not a single signal escapes this isolated island.
-- **The Void**: When you attempt to wake the AI, the Sinkhole Server captures these requests and devours them. You will only see connection failure prompts—withdrawal symptoms of the digital age.
-- **The Reflection**: Set a period of "AI-free" solitude (1-24 hours). After the experiment concludes, the system will tell you: during this time, how many times did you subconsciously reach out to the cloud.
+<div align="center">
+  <img src="src/image/屏幕截图 2025-12-02 221933.png" width="80%" alt="Main Interface">
+  <p><em> - </em></p>
+</div>
+
+- **🛑 The Severance (阻断)**  
+  Instantly cut the umbilical connection to hundreds of AI services like OpenAI, Copilot, Claude, Gemini, etc. A system-level Hosts hijack ensures not a single signal escapes this isolated island.
+
+- **🕳️ The Void (虚空)**  
+  When you attempt to wake the AI, the Sinkhole Server captures these requests and devours them. You will only see connection failure prompts—withdrawal symptoms of the digital age.
+
+- **🧘 The Reflection (反思)**  
+  Set a period of "AI-free" solitude (1-24 hours). After the experiment concludes, the system will tell you: during this time, how many times did you subconsciously reach out to the cloud.
+
+
+---
 
 ## 📄 Technical Blueprint
 
@@ -76,8 +108,10 @@ python src/main.py off
 ```
 
 ### 4. Troubleshooting
-- **Antivirus Interception**: Since the program needs to modify the `hosts` file, it may be mistaken for a malicious intrusion by antivirus software. Please grant it trust, or temporarily disable protection.
-- **Lost in the Void (Unable to Restore)**: If an accident occurs and the network fails to recover automatically, please manually delete the `IfNoAI` related section in the `hosts` file, and run `ipconfig /flushdns` to flush the DNS cache.
+- **🛡️ Antivirus Interception**: Since the program needs to modify the `hosts` file, it may be mistaken for a malicious intrusion by antivirus software. Please grant it trust, or temporarily disable protection.
+- **⚠️ Lost in the Void (Unable to Restore)**: If an accident occurs and the network fails to recover automatically, please manually delete the `IfNoAI` related section in the `hosts` file, and run `ipconfig /flushdns` to flush the DNS cache.
+
+---
 
 ## 🤝 Join the Resistance
 
@@ -91,4 +125,9 @@ Let us jointly perfect this line of defense and ensure the purity of the experim
 This software is intended for technical experimentation and philosophical reflection. It works by modifying core system files. Please ensure you understand the consequences of this action, and properly preserve your data and beliefs.
 
 ---
+
+<div align="center">
+
 *Looking for the ghost in the machine.*
+
+</div>
